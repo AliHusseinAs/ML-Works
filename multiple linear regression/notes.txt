@@ -1,0 +1,7 @@
+multiple linear regression equation 
+        Y = b + b'x1 + b"x2 + b"'x3 + .... + b^(n")xn 
+when you have non-numerical variables { might be categorical variables } then assign a set of dummy 
+variables to those non-numerical variables {like 0,1,2,3,......,n where n is an integer}
+and it will be added as bX4 where x4 is the dummy variable and always include n-1 dummy variables
+if you have 5 categoricals then add 4 dummy variables in a way it adjust the existance of all variables
+

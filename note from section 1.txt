@@ -1,0 +1,103 @@
+Feature scaling ----
+
+you can deal with one column only 
+Techniques of feature scaling :Standardisation and Normalisation  Normalisation  = ( X - Xmin / Xmax - Xmin ) Standardisation = ( X - average / standard deviation ) 
+
+Feature scaling ----
+
+
+in every dataset of which you will train your model there will be : 
+features and dependent variables 
+so the thing we want to predect is dependent variable and what we will use
+to predect is feature.
+
+IMPORTANT 
+ML models expects two inputs one feature variables and two dependent variables
+
+you can deal with missing data by either 1- deleting the row that has the missing data: if we have large dataset where couple of rows wont be a huge issue if deleted
+
+ML models are built with the help of sciket-learn lib in Python
+and the handling of missing data will be done via it too via { SimpleImpute class from impute in sklearn} and it will replace the missing data with the average { if the data is numeric or if we specify the strategy='mean' } 
+
+in order to not make the model think that the sorted data has some sort of numerical value and therefore one is better { for example in a row 1-A 2-B 3-C and the model would think this numbering is some sort of sorting } in order to prevent this we shall encode the categories { one hut encoding which turning the columns into X different column where X represents the number of classes in a row { if in a dataset we have 3 countries we shall have 3 columns }} we do this using " sklearn.compose " via class 
+"ColumnTransformer" and mix it with " sklearn.preprocessing " via class 
+"OneHotEncoder" 
+
+
+the encoder is quite important
+to encode the column { first column }
+here is the code 
+
+# import pandas as pd
+# import numpy as np
+# from sklearn.compose import ColumnTransformer
+# from sklearn.preprocessing import OneHotEncoder
+
+# dataset = pd.read_csv("data.csv")
+# X = dataset.iloc[:, :-1].values
+# Y = dataset.iloc[:, -1].values
+
+# ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])],
+#                        remainder='passthrough')
+# X = np.array(ct.fit_transform(X))
+
+to encode the last column { since the dataset used in the course has dependent variables as strings we need to encode}
+
+# import pandas as pd
+# import numpy as np
+# from sklearn.preprocessing import LabelEncoder
+
+
+# dataset = pd.read_csv("data.csv")
+# X = dataset.iloc[:, :-1].values
+# Y = dataset.iloc[:, -1].values
+# lable = LabelEncoder()
+# Y = lable.fit_transform(Y)
+# print(Y)
+
+
+Another Important 
+to split the dataset into training and testing data 
+
+the starting code will be 
+# from sklearn.model_selection import train_test_split
+# dataset = pd.read_csv("data.csv")
+# X = dataset.iloc[:, :-1].values
+# Y = dataset.iloc[:, -1].values
+# X_train, X_test, Y_train, Y_test = train_test_split()
+train_test_split() will take 4 parameteres :
+        1- X {feature var}
+        2- Y {dependent var}
+        3- size of the split {train set will for sure be larger than test} {testSize = 0.2 which means 20% of the set}
+        4- in order to get the same split we use " random_state = 1 "
+
+
+THE FULL CODE IS 
+
+# from sklearn.model_selection import train_test_split
+# import pandas as pd
+# from sklearn.impute import SimpleImputer
+# import numpy as np
+# from sklearn.compose import ColumnTransformer
+# from sklearn.preprocessing import OneHotEncoder
+# from sklearn.preprocessing import LabelEncoder
+
+# dataset = pd.read_csv("data.csv")
+# X = dataset.iloc[:, :-1].values
+# Y = dataset.iloc[:, -1].values
+# Imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
+# Imputer.fit(X[:, 1:3])
+# X[:, 1:3] = Imputer.transform(X[:, 1:3])
+# ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])],
+#                        remainder='passthrough')
+# X = np.array(ct.fit_transform(X))
+# lable = LabelEncoder()
+# Y = lable.fit_transform(Y)
+# X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2,
+#                                                      random_state=1 )
+
+Feature scaling : 
+
+Standardisation = (X - mean) / Standard Deviation
+Normalisation = (X - Xmin) / (Xmax - Xmin)
+

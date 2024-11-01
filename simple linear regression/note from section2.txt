@@ -1,0 +1,9 @@
+Regression Models 
+help to predict some continuos real numbers {eg. salary, interest rates, stock prices...etc}
+
+the predict function only takes 2D arrays in case you want to enter one number write [[number]] and it 
+will work;
+
+with the dataset used in the model, we got very close results because that the dataset dependent vars
+and independent vars have linear corelation if the dataset doest not have linear corelation then we
+can not use linear regression to model it.
